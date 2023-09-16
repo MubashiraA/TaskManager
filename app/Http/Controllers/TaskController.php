@@ -54,7 +54,7 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        // $task = DB::table('tasks')->where('id',)->get();
+        return view("tasks.taskview", ['task' => $task]);
     }
 
     /**
@@ -62,15 +62,18 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        //
+        return view("tasks.edittask",['task' =>$task]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Task $task)
+    public function update(StoreTask $request, Task $task)
     {
-        //
+        $task->title=$request->title;
+        $task->description=$request->description;
+        $task->save();        
+        return redirect("tasks");
     }
 
     /**
@@ -78,6 +81,7 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
+        $task->delete();
+        return redirect('tasks');
     }
 }

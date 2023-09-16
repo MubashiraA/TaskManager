@@ -19,6 +19,16 @@
             <td>{{$task->id}}</td>
             <td>{{$task->title}}</td>
             <td>{{$task->description}}</td>
+            <td><a href="/tasks/{{$task->id}}"><button>View</button></a></td>
+            <td><a href="/tasks/{{$task->id}}/edit"><button>Edit</button></a></td>
+            <!-- <td><a href="/tasks/{{$task->id}}"><button>Delete</button></a></td> -->
+            <td>
+                <form action="/tasks/{{$task->id}}" method="post">
+                    @method('delete')
+                    @csrf
+                    <button>Delete</button>
+                </form>
+            </td>
         </tr>
         @endforeach
     </table>
