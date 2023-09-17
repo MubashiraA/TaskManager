@@ -47,6 +47,7 @@ class TaskController extends Controller
         //     'description' => $request->description ,
         // ]);
         Task::create($request->all());
+        return redirect('tasks');
     }
 
     /**
